@@ -1,10 +1,5 @@
 package model_server;
 
-import mediator_server.GamePackage;
-import mediator_server.ServerClientHandler;
-import util.Logger;
-
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class ModelManagerServer implements ModelServer {
@@ -16,10 +11,10 @@ public class ModelManagerServer implements ModelServer {
 	}
 
 	@Override
-	public synchronized boolean createGameRoom(String id, ServerClientHandler clientHandler) {
+	public synchronized boolean createGameRoom(String id, Client client) {
 //		account for the case when room of given id already exists
 		GameRoom room = new GameRoom(id);
-		room.addChessPlayer(clientHandler);
+		room.addChessPlayer(client);
 		rooms.add(room);
 		return true;
 	}
@@ -34,16 +29,17 @@ public class ModelManagerServer implements ModelServer {
 	}
 
 	@Override
-	public synchronized boolean joinRoom(String id, ServerClientHandler clientHandler) {
+	public synchronized boolean joinRoom(String id,  Client client) {
 		GameRoom room = getGameRoomById(id);
 		if(room==null)return false;
 
+
 		if (room.getPlayers()>=2)
 		{
-			room.addSpectator(clientHandler);
+			room.addSpectator(client);
 		}
 		else
-		room.addChessPlayer(clientHandler);
+		room.addChessPlayer(client);
 
 
 
@@ -61,7 +57,7 @@ public class ModelManagerServer implements ModelServer {
 
 	@Override
 	public synchronized ArrayList<String> getAllChats(String roomId) {
-		return getGameRoomById(roomId).getChessGame().getChatLogs();
+		return getGameRoomById(roomId).getChatLogs();
 	}
 
 	@Override

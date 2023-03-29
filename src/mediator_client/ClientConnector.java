@@ -2,9 +2,7 @@ package mediator_client;
 
 
 import com.google.gson.Gson;
-import mediator_server.GamePackage;
 import model_client.ModelClient;
-import model_server.GameRoom;
 import util.*;
 
 import java.beans.PropertyChangeListener;

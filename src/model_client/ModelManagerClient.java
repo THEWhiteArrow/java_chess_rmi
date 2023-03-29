@@ -4,14 +4,10 @@ package model_client;
 
 import mediator_client.ClientConnector;
 
-import mediator_server.GamePackage;
-import util.Logger;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 
 public class ModelManagerClient implements ModelClient, PropertyChangeListener {
 

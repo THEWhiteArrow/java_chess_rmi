@@ -2,12 +2,8 @@ package mediator_client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.Socket;
 
 import com.google.gson.Gson;
-import mediator_server.GamePackage;
-import model_server.ModelServer;
-import util.Logger;
 
 public class ClientReceiver implements Runnable {
 

@@ -1,19 +1,19 @@
 package model_server;
 
-import mediator_server.ServerClientHandler;
-import mediator_server.ServerConnector;
+import mediator_server.ModelClient;
 
-import java.net.Socket;
+import java.rmi.Remote;
 import java.util.ArrayList;
 
-public interface ModelServer {
+public interface ModelServer extends utility.observer.subject.RemoteSubject<GameRoom,GameRoom>
+{
 
-//	public ServerConnector serverConnector;
 
-	public abstract boolean createGameRoom(String id,ServerClientHandler clientHandler);
+	public abstract boolean createGameRoom(String id, Client client);
 
-	public abstract boolean joinRoom(String id, ServerClientHandler clientHandler);
+	public abstract boolean joinRoom(String id, Client client);
 
+	boolean joinRoom(String id, Client client);
 	public abstract boolean updateChessGameRoom(String id, String notation);
 
 	public abstract boolean leaveGameRoom(String id);

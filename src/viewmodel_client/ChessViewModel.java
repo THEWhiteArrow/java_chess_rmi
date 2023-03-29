@@ -4,11 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import mediator_server.GamePackage;
 import model_client.ModelClient;
-import util.ChatPackage;
 
-import javax.tools.JavaCompiler;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
