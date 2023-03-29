@@ -2,6 +2,7 @@ package utility.observer.event;
 
 import utility.observer.subject.GeneralSubject;
 
+import java.beans.PropertyChangeEvent;
 import java.io.Serializable;
 
 /**
@@ -19,7 +20,7 @@ import java.io.Serializable;
  * @author Steffen Vissing Andersen
  * @version 1.4 - april 2021
  */
-public class ObserverEvent<S, T> implements Serializable
+public class ObserverEvent<S, T> extends PropertyChangeEvent implements Serializable
 {
   private static final long serialVersionUID = 2910;
 
