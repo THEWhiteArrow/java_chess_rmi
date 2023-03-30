@@ -8,7 +8,6 @@ import model_client.ModelClient;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
@@ -20,8 +19,6 @@ public class ChessViewModel extends ViewModel implements PropertyChangeListener 
 	private StringProperty notationProperty, chatProperty;
 
 	private ViewState viewState;
-
-
 	private ModelClient model;
 
 	public ChessViewModel(ModelClient model, ViewState viewState) {
@@ -29,7 +26,7 @@ public class ChessViewModel extends ViewModel implements PropertyChangeListener 
 		this.viewState=viewState;
 		this.notationProperty = new SimpleStringProperty();
 		this.chatProperty = new SimpleStringProperty();
-		this.model.addListener(this);
+
 
 		chatList = FXCollections.observableArrayList();
 	}
@@ -62,7 +59,8 @@ public synchronized boolean setSpectator()  {
 		return viewState.getRoomId();
 	}
 
-	public void sendNotation(String notation)  {
+	public void sendNotation(String notation)
+	{
 
 		if( isWhite ) model.sendNotation(viewState.getRoomId(), notation);
 		else {

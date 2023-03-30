@@ -4,12 +4,10 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.fxml.FXML;
 import model_client.ModelClient;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.rmi.RemoteException;
 
 public class LoginViewModel extends ViewModel implements PropertyChangeListener {
 	private final String[] names = {
@@ -61,7 +59,7 @@ public class LoginViewModel extends ViewModel implements PropertyChangeListener 
 		String name = nameProperty.get();
 
 
-		if( model.connectToServer(host,port) ){
+		if(model.connectToServer(host,port) ){
 			this.viewState.setName(name);
 			return true;
 		}else

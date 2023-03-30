@@ -4,12 +4,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model_client.ModelClient;
 
-import java.rmi.RemoteException;
-
 public class MenuViewModel extends ViewModel{
 
     private StringProperty roomIdProperty;
-    private ModelClient model;
+  private ModelClient model;
     private ViewState viewState;
 
     public MenuViewModel(ModelClient model , ViewState viewState){
