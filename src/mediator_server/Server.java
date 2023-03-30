@@ -3,6 +3,7 @@ package mediator_server;
 
 
 
+import mediator_client.Client;
 import model_server.GameRoom;
 import model_server.ModelServer;
 import util.utility.observer.subject.*;
@@ -48,12 +49,12 @@ public class Server implements ModelServer
 	@Override public boolean createGameRoom(String id,
 			 Client client)
 	{
-		server.createGameRoom(id,client);
+		return server.createGameRoom(id,client);
 	}
 
 	@Override public boolean joinRoom(String id, ModelClient client)
 	{
-		server.joinRoom(id,client);
+		return server.joinRoom(id,client);
 	}
 
 	@Override public boolean updateChessGameRoom(String id, String notation)

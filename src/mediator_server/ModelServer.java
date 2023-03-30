@@ -1,15 +1,15 @@
 package mediator_server;
 
+import mediator_client.Client;
+
 import java.util.ArrayList;
 
 public interface ModelServer
 {
+	
+	public abstract boolean createGameRoom(String id, Client client);
 
-
-
-	public abstract boolean createGameRoom(String id, ModelClient clientHandler);
-
-	public abstract boolean joinRoom(String id, ModelClient clientHandler);
+	public abstract boolean joinRoom(String id, Client client);
 
 	public abstract boolean updateChessGameRoom(String id, String notation);
 
