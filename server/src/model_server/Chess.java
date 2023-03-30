@@ -1,19 +1,23 @@
 package model_server;
 
+import javax.sound.midi.Soundbank;
+import java.util.logging.Logger;
+
 public class Chess {
 
 	private String notation;
-	private GameRoom gameRoom;
-	//private ArrayList<Client> serverClientHandler;
-	public Chess(){
 
-	//	clients = new ArrayList<>();
+
+
+	public Chess(){
+		setNotation("");
 	}
 	public void setNotation(String notation) {
 		this.notation = notation;
 	}
 
 	public String getNotation() {
-		return null;
+		return notation;
 	}
+
 }

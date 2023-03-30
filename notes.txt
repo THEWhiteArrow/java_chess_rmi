@@ -1,0 +1,51 @@
+2 type of the events
+
+
+<roomId>-chat
+<roomId>-notation
+
+String - chatMessage 3rd arg
+String - notation 3rd arg
+
+
+Client
+ModelManagerClient
+
+
+
+
+
+
+
+
+m1
+m2
+m3
+m4
+m5
+m6
+m7
+
+m7
+m6
+m5
+.....
+
+add 0
+
+m2
+m1
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,7 +7,7 @@ import model_client.ModelClient;
 public class MenuViewModel extends ViewModel{
 
     private StringProperty roomIdProperty;
-  private ModelClient model;
+    private ModelClient model;
     private ViewState viewState;
 
     public MenuViewModel(ModelClient model , ViewState viewState){
@@ -17,23 +17,22 @@ public class MenuViewModel extends ViewModel{
 
     }
 
-    public boolean joinRoom()  {
+    public boolean joinRoom(){
         viewState.setRoomId(roomIdProperty.get());
         return model.joinGameRoom(roomIdProperty.get());
     }
 
-    public boolean createRoom()  {
+    public boolean createRoom(){
         viewState.setRoomId(roomIdProperty.get());
         return model.createGameRoom(roomIdProperty.get());
     }
 
 
-    public StringProperty getRoomIdProperty()
-            {
+    public StringProperty getRoomIdProperty(){
         return roomIdProperty;
     }
 
-    public String randomString(int n) {
+    public String randomString(int n){
         String ans = "";
         while(n-->0)
             ans+=""+(char)((int)(Math.random()*(90-65+1))+65);
