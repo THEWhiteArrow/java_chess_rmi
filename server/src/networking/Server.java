@@ -1,6 +1,7 @@
 package networking;
 
 import model_server.ModelServer;
+import networking.RemoteModel;
 import utility.observer.listener.GeneralListener;
 import utility.observer.subject.PropertyChangeHandler;
 
@@ -12,7 +13,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class Server implements RemoteModel {
+public class Server implements RemoteModel
+{
 
     private ModelServer model;
     private PropertyChangeHandler property;
