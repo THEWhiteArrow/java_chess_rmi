@@ -30,21 +30,19 @@ public class GameRoom {
 
 
 
-	public void addChessChatMessage(String username, String message){
+	public void addChatMessage(String username, String message){
 		chatLogs.add(0,username+" : "+ message);
-		notifyPlayers(PkgType.CHAT);
+
 	}
 	public void addSpectator(Client spectator)
 	{
 		spectators.add(spectator);
 	}
-	public int getPlayers()
-	{
-		return chess.getPlayers();
-	}
 
-	public synchronized ArrayList<String> getChatLogs(){
+
+	public  ArrayList<String> getChatLogs(){
 		return chatLogs;
 	}
+
 
 }

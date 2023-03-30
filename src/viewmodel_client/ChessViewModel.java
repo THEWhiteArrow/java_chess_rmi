@@ -8,6 +8,7 @@ import model_client.ModelClient;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
@@ -38,8 +39,7 @@ public class ChessViewModel extends ViewModel implements PropertyChangeListener 
 	}
 
 
-public synchronized boolean setSpectator()
-{
+public synchronized boolean setSpectator()  {
 	return model.setSpectator();
 }
 	public synchronized void clear() {
@@ -51,8 +51,12 @@ public synchronized boolean setSpectator()
 	private synchronized  void loadChat(){
 		Platform.runLater( () -> {
 			chatList.clear();
-			for(String chat : getChat())
-				chatList.add(chat);
+			try {
+				for(String chat : getChat())
+					chatList.add(chat);
+			} catch (RemoteException e) {
+				throw new RuntimeException(e);
+			}
 		});
 	}
 	public String getRoomId()
@@ -60,7 +64,7 @@ public synchronized boolean setSpectator()
 		return viewState.getRoomId();
 	}
 
-	public void sendNotation(String notation) {
+	public void sendNotation(String notation)  {
 
 		if( isWhite ) model.sendNotation(viewState.getRoomId(), notation);
 		else {
@@ -70,7 +74,7 @@ public synchronized boolean setSpectator()
 
 	}
 
-	public void sendChatMessage(){
+	public void sendChatMessage()  {
 		
 		model.sendChatMessage(viewState.getRoomId(),viewState.getName(),chatProperty.get());
 		chatProperty.set("");;
@@ -91,8 +95,7 @@ public synchronized boolean setSpectator()
 		notationProperty.set(String.valueOf(builder.reverse()));
 	}
 
-	public synchronized ArrayList<String> getChat()
-	{
+	public synchronized ArrayList<String> getChat()  {
 		return model.getAllChat(viewState.getRoomId());
 	}
 

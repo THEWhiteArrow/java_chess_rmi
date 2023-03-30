@@ -4,6 +4,8 @@ package view_client;
 import javafx.scene.layout.Region;
 import viewmodel_client.ViewModel;
 
+import java.rmi.RemoteException;
+
 public abstract class ViewController {
 
 	protected Region root;
@@ -13,7 +15,7 @@ public abstract class ViewController {
 //	protected ViewModel viewModel;
 
 
-	public abstract  void init(ViewHandler viewHandler, ViewModel viewModel, Region root);
+	public abstract  void init(ViewHandler viewHandler, ViewModel viewModel, Region root) ;
 
 //	public void init(ViewHandler viewHandler, ViewModel viewModel, Region root){
 //		this.viewHandler=viewHandler;
@@ -25,6 +27,6 @@ public abstract class ViewController {
 		return root;
 	}
 
-	public abstract void reset();
+	public abstract void reset() ;
 
 }

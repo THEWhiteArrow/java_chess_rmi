@@ -10,6 +10,8 @@ import util.IntStringConverter;
 import viewmodel_client.LoginViewModel;
 import viewmodel_client.ViewModel;
 
+import java.rmi.RemoteException;
+
 
 public class LoginViewController extends ViewController {
 
@@ -38,7 +40,7 @@ public class LoginViewController extends ViewController {
 		errorLabel.textProperty().bind(this.viewModel.getErrorProperty());
 		nameField.textProperty().bindBidirectional(this.viewModel.getNameProperty());
 	}
-	@FXML private void connect() {
+	@FXML private void connect()  {
 
 		if(viewModel.connect())
 			viewHandler.openView("menu");

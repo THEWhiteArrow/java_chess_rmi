@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import viewmodel_client.ViewModel;
 import viewmodel_client.ViewModelFactory;
 
+import java.rmi.RemoteException;
+
 public class ViewHandler {
 
 	private Region root;
@@ -25,7 +27,7 @@ public class ViewHandler {
 		currentScene = new Scene(new Region());
 	}
 
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage)  {
 		this.primaryStage = primaryStage;
 		openView("login");
 	}
@@ -34,7 +36,7 @@ public class ViewHandler {
 		primaryStage.close();
 	}
 
-	public void openView(String id) {
+	public void openView(String id)  {
 		switch (id)
 		{
 			case "login":
@@ -62,7 +64,7 @@ public class ViewHandler {
 		primaryStage.show();
 	}
 
-	private ViewController loadViewController(String fxmlFile, ViewController viewController, ViewModel viewModel) {
+	private ViewController loadViewController(String fxmlFile, ViewController viewController, ViewModel viewModel)  {
 		if (viewController == null)
 		{
 			try

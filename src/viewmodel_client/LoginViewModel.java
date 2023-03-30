@@ -9,6 +9,7 @@ import model_client.ModelClient;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.rmi.RemoteException;
 
 public class LoginViewModel extends ViewModel implements PropertyChangeListener {
 	private final String[] names = {
@@ -54,7 +55,7 @@ public class LoginViewModel extends ViewModel implements PropertyChangeListener 
 		nameProperty= new SimpleStringProperty();
 	}
 
-	public boolean connect() {
+	public boolean connect()  {
 		String host = hostProperty.get();
 		int port = portProperty.get();
 		String name = nameProperty.get();

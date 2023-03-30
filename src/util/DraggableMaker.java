@@ -5,6 +5,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import view_client.ChessViewController;
 
+import java.rmi.RemoteException;
+
 
 public class DraggableMaker {
     private double startX=0.0,startY=0.0;

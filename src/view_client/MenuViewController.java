@@ -7,13 +7,15 @@ import javafx.scene.layout.Region;
 import viewmodel_client.MenuViewModel;
 import viewmodel_client.ViewModel;
 
+import java.rmi.RemoteException;
+
 
 public class MenuViewController extends ViewController {
     @FXML private TextField roomField;
     private MenuViewModel viewModel;
 
 
-    public void init(ViewHandler viewHandler, ViewModel viewModel, Region root) {
+    public void init(ViewHandler viewHandler, ViewModel viewModel, Region root)  {
         this.viewHandler=viewHandler;
         this.viewModel = (MenuViewModel) viewModel;
         this.root = root;
@@ -22,18 +24,18 @@ public class MenuViewController extends ViewController {
     }
 
     @Override
-    public void reset() {
+    public void reset()  {
         viewModel.clear();
     }
 
-    public void createRoom( ) {
+    public void createRoom( )  {
 
         if(viewModel.createRoom()){
             viewHandler.openView("chess");
         }
     }
 
-    public void joinRoom( ) {
+    public void joinRoom( )  {
 
         if(viewModel.joinRoom())
             viewHandler.openView("chess");

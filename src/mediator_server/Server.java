@@ -4,10 +4,10 @@ package mediator_server;
 
 
 import mediator_client.Client;
+import model_client.ModelClient;
 import model_server.GameRoom;
-import model_server.ModelServer;
-import util.utility.observer.subject.*;
 import utility.observer.listener.GeneralListener;
+import utility.observer.subject.PropertyChangeHandler;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -20,49 +20,55 @@ import java.util.ArrayList;
 public class Server implements ModelServer
 {
 
-	private mediator_server.ModelServer server;
-	private ModelClient client;
-	private PropertyChangeHandler<GameRoom,GameRoom> property;
+	private ArrayList<GameRoom> rooms;
 
-	public Server()
-			throws RemoteException, MalformedURLException
-	{
-		this.property = new PropertyChangeHandler<>(this,true);
+	private PropertyChangeHandler<String,GameRoom> property;
+
+	public Server() throws MalformedURLException, RemoteException {
 		startRegistry();
+		this.rooms = new ArrayList<>();
+		this.property = new PropertyChangeHandler<>(this,true);
+
 		start();
 
 	}
 
-	private void start() throws RemoteException, MalformedURLException
-	{
+	private void start() throws MalformedURLException, RemoteException {
 		UnicastRemoteObject.exportObject( this,0);
-		Naming.rebind("GAME",  this);
+		Naming.rebind("SERVER",  this);
 		System.out.println("Server Started");
 	}
-	private void startRegistry() throws RemoteException
-	{
+	private void startRegistry() throws RemoteException {
 		Registry reg = LocateRegistry.createRegistry(1099);
 		System.out.println("Registry started");
 	}
 
 
-	@Override public boolean createGameRoom(String id,
-			 Client client)
+	@Override public boolean createGameRoom(String id) 
 	{
-		return server.createGameRoom(id,client);
+		GameRoom room = new GameRoom(id);
+		return rooms.add(room);
 	}
 
-	@Override public boolean joinRoom(String id, ModelClient client)
-	{
-		return server.joinRoom(id,client);
+
+
+	@Override
+	public boolean joinRoom(String id) {
+		return true;
 	}
 
-	@Override public boolean updateChessGameRoom(String id, String notation)
+	@Override public boolean updateChessGameRoom(String id, String notation) 
 	{
-		return server.updateChessGameRoom(id,notation);
+//		for (GameRoom room : rooms)
+//		{
+//			if(room.getId().equals(id))
+//				room.getChessGame().setNotation(notation);
+//		}
+//		property.firePropertyChange("NOTATION", null ,getRoomById(id));
+		return true;
 	}
 
-	@Override public boolean leaveGameRoom(String id)
+	@Override public boolean leaveGameRoom(String id) 
 	{
 		return false;
 	}
@@ -72,28 +78,37 @@ public class Server implements ModelServer
 		return null;
 	}
 
-	@Override public boolean addChatMessage(String roomId, String username,
-			String message)
-	{
-		return server.addChatMessage(roomId,username,message);
+	@Override
+	public GameRoom getRoomById(String id)  {
+		for(GameRoom room : rooms)
+			if( id.equals(room.getId()))
+				return room;
+		return null;
 	}
 
-	@Override public ArrayList<String> getAllChats(String roomId)
+	@Override public boolean addChatMessage(String roomId, String username,String message) 
 	{
-		return server.getAllChats(roomId);
+//		getRoomById(roomId).addChatMessage(message,username);
+//		property.firePropertyChange("CHAT", null, getRoomById(roomId));
+		return true;
 	}
 
-	@Override public boolean addListener(
-			GeneralListener<GameRoom, GameRoom> listener, String... propertyNames)
-			throws RemoteException
+	@Override public ArrayList<String> getAllChats(String roomId) 
 	{
-		return property.addListener(listener);
+		return getRoomById(roomId).getChatLogs();
 	}
 
-	@Override public boolean removeListener(
-			GeneralListener<GameRoom, GameRoom> listener, String... propertyNames)
-			throws RemoteException
-	{
-		return property.removeListener(listener);
+
+
+	@Override
+	public boolean addListener(GeneralListener<String, GameRoom> listener, String... propertyNames)  {
+		property.addListener(listener,propertyNames);
+		return true;
+	}
+
+	@Override
+	public boolean removeListener(GeneralListener<String, GameRoom> listener, String... propertyNames)  {
+		property.addListener(listener,propertyNames);
+		return true;
 	}
 }

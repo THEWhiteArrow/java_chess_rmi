@@ -18,6 +18,7 @@ import viewmodel_client.ChessViewModel;
 import viewmodel_client.ViewModel;
 
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 
@@ -35,7 +36,7 @@ public class ChessViewController extends ViewController {
 
 
 
-	public void init(ViewHandler viewHandler, ViewModel viewModel, Region root){
+	public void init(ViewHandler viewHandler, ViewModel viewModel, Region root)  {
 		this.viewHandler=viewHandler;
 		this.viewModel= (ChessViewModel) viewModel;
 		this.root=root;
@@ -76,7 +77,7 @@ public class ChessViewController extends ViewController {
 	}
 
 
-	@FXML private void enterPressed(){
+	@FXML private void enterPressed()  {
 		viewModel.sendChatMessage();
 	}
 
@@ -85,12 +86,12 @@ public class ChessViewController extends ViewController {
 		viewModel.clear();
 	}
 
-	public void sendNotation(String fieldName){
+	public void sendNotation(String fieldName)  {
 		String notation = FENParser.calculateFen( piecesPane.getChildren() ) +" " +fieldName;
 		viewModel.sendNotation(notation);
 	}
 
-	public void updatePieces(String notation){
+	public void updatePieces(String notation)  {
 		piecesPane.getChildren().remove(0,piecesPane.getChildren().size());
 
 		ArrayList<Piece> pieces = FENParser.createPieces(notation);
