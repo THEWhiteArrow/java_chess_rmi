@@ -1,15 +1,15 @@
 package mediator_client;
 
-import mediator_server.ModelServer;
-import model_client.ModelClient;
-import model_server.GameRoom;
+
 import utility.observer.event.ObserverEvent;
 import utility.observer.listener.RemoteListener;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -19,8 +19,12 @@ public class Client implements RemoteListener<String,GameRoom>,
 
     private mediator_client.ModelServer server;
     private PropertyChangeSupport property;
-    public Client(){
+    public Client()
+        throws MalformedURLException, NotBoundException, RemoteException
+    {
         this.property = new PropertyChangeSupport(this);
+        this.server = (ModelServer) Naming.lookup("rmi://localhost:1099/SERVER");
+        this.server.addListener(this);
     }
 
     @Override
@@ -45,7 +49,7 @@ public class Client implements RemoteListener<String,GameRoom>,
     }
 
 
-    public boolean createGameRoom(String id) throws RemoteException
+    public boolean createGameRoom(String id)
     {
         server.createGameRoom(id);
         try {

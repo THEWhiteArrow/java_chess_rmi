@@ -1,12 +1,7 @@
-package model_server;
+package mediator_client;
 
-
-import util.PkgType;
-
-import java.util.ArrayList;
-
-
-public class Chess {
+public class Chess
+{
 
 	private String notation;
 	private GameRoom gameRoom;

@@ -1,11 +1,11 @@
-package model_server ;
+package mediator_client;
 
-import mediator_client.Client;
-import util.PkgType;
+
 
 import java.util.ArrayList;
 
-public class GameRoom {
+public class GameRoom
+{
 	private String id;
 
 	private Chess chess;

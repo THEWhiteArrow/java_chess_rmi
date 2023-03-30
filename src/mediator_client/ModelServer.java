@@ -1,6 +1,6 @@
 package mediator_client;
 
-import model_server.GameRoom;
+
 import utility.observer.subject.RemoteSubject;
 
 import java.rmi.RemoteException;
