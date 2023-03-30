@@ -7,7 +7,6 @@ import model_server.GameRoom;
 import model_server.ModelServer;
 import util.utility.observer.subject.*;
 import utility.observer.listener.GeneralListener;
-import utility.observer.subject.PropertyChangeHandler;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

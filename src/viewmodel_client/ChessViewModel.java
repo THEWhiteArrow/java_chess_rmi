@@ -100,14 +100,14 @@ public synchronized boolean setSpectator()
 		String type = evt.getPropertyName();
 
 		switch(type){
-			case GamePackage.ERROR:
+			case "ERROR":
 //				no error property yet
 				break;
-			case GamePackage.NOTATION:
-				GamePackage pkg = (GamePackage) evt.getNewValue();
-				if( isWhite) notationProperty.set(pkg.getNotation());
+			case "NOTATION":
+				String notation = (String)evt.getNewValue();
+				if( isWhite) notationProperty.set(notation);
 				else {
-					StringBuilder builder = new StringBuilder(pkg.getNotation().split(" ")[0]);
+					StringBuilder builder = new StringBuilder(notation.split(" ")[0]);
 					notationProperty.set(String.valueOf(builder.reverse()));
 				}
 				break;
