@@ -11,9 +11,10 @@ import java.io.IOException;
 public class ClientApplication extends Application
 {
     public void start(Stage primaryStage) throws IOException {
-        ModelClient client = new Client();
+        Client client = new Client();
 
-        ViewModelFactory viewModelFactory = new ViewModelFactory(client);
+        ViewModelFactory viewModelFactory = new ViewModelFactory(
+            (ModelClient) client);
         ViewHandler view = new ViewHandler(viewModelFactory);
         view.start(primaryStage);
     }

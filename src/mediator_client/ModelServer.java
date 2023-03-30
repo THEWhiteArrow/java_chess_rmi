@@ -1,6 +1,5 @@
-package mediator_server;
+package mediator_client;
 
-import mediator_client.Client;
 import model_server.GameRoom;
 import utility.observer.subject.RemoteSubject;
 

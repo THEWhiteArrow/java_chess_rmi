@@ -51,12 +51,10 @@ public synchronized boolean setSpectator()  {
 	private synchronized  void loadChat(){
 		Platform.runLater( () -> {
 			chatList.clear();
-			try {
+
 				for(String chat : getChat())
 					chatList.add(chat);
-			} catch (RemoteException e) {
-				throw new RuntimeException(e);
-			}
+
 		});
 	}
 	public String getRoomId()

@@ -1,6 +1,5 @@
 package mediator_server;
 
-import mediator_client.Client;
 import model_server.GameRoom;
 import utility.observer.subject.RemoteSubject;
 
@@ -14,7 +13,7 @@ public interface ModelServer extends RemoteSubject<String, GameRoom>
 
 	public abstract boolean joinRoom(String id)throws RemoteException;
 
-	public abstract boolean updateChessGameRoom(String id, String notation) throws RemoteException;
+	public abstract boolean updateChessGameRoom(String id, String notation)throws RemoteException ;
 
 	public abstract boolean leaveGameRoom(String id)throws RemoteException ;
 
@@ -22,7 +21,7 @@ public interface ModelServer extends RemoteSubject<String, GameRoom>
 
 	GameRoom getRoomById(String id) throws RemoteException;
 
-    boolean addChatMessage(String roomId, String username, String message) throws RemoteException;
+    boolean addChatMessage(String roomId, String username, String message)throws RemoteException ;
 
-    ArrayList<String> getAllChats(String roomId) throws RemoteException;
+    ArrayList<String> getAllChats(String roomId)throws RemoteException ;
 }
