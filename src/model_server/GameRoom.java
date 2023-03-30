@@ -1,5 +1,6 @@
 package model_server ;
 
+import mediator_client.Client;
 import util.PkgType;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class GameRoom {
 
 	private Chess chess;
 	private ArrayList<String> chatLogs;
-	private Arralist<Client> spectators;
+	private ArrayList<Client> spectators;
 
 	public GameRoom(String id){
 		this.id=id;

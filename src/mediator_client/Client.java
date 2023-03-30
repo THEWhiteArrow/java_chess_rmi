@@ -38,7 +38,7 @@ public class Client implements utility.observer.listener.RemoteListener<String, 
     @Override
     public boolean createGameRoom(String id) {
         server.createGameRoom(id);
-        server.addListener(id);
+        server.addListener(id,this );
         return true;
     }
 
