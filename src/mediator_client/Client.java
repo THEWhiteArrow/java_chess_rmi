@@ -15,7 +15,7 @@ public class Client implements RemoteListener<String,GameRoom>,
     Serializable
 {
 
-    private mediator_client.ModelServer server;
+    private ModelServer server;
     private PropertyChangeSupport property;
 
     public Client()
@@ -23,7 +23,7 @@ public class Client implements RemoteListener<String,GameRoom>,
     {
         UnicastRemoteObject.exportObject(this,0);
         this.property = new PropertyChangeSupport(this);
-        this.server = (ModelServer) Naming.lookup("rmi://localhost:1099/SERVER");
+        this.server = (ModelServer) Naming.lookup("rmi://localhost:1099/Chess");
         this.server.addListener(this);
 
 

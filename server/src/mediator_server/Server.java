@@ -33,7 +33,7 @@ public class Server implements ModelServer
 
 	private void start() throws MalformedURLException, RemoteException {
 		UnicastRemoteObject.exportObject( this,0);
-		Naming.rebind("SERVER",  this);
+		Naming.rebind("Chess",this);
 		System.out.println("Server Started");
 	}
 	private void startRegistry() throws RemoteException {
