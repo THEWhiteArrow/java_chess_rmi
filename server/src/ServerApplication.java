@@ -1,16 +1,10 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import mediator_server.Server;
-
-import java.io.IOException;
+import Networking.Server;
 
 public class ServerApplication extends Application
 {
-    public void start(Stage primaryStage) throws IOException {
-
-
-       Server server = new Server();
-
-
+    public void start(Stage primaryStage) throws Exception {
+      Server server = new Server();
     }
 }

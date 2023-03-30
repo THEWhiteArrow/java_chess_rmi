@@ -1,4 +1,4 @@
-package mediator_server;
+package Networking;
 
 import model_server.GameRoom;
 import utility.observer.listener.GeneralListener;
@@ -20,14 +20,10 @@ public class Server implements ModelServer
 	private PropertyChangeHandler<String,GameRoom> property;
 
 	public Server() throws MalformedURLException, RemoteException {
-
 		this.rooms = new ArrayList<>();
 		this.property = new PropertyChangeHandler<>(this,true);
 		startRegistry();
 		start();
-
-
-
 
 	}
 

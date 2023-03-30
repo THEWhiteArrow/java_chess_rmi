@@ -1,4 +1,4 @@
-package mediator_server;
+package Networking;
 
 import model_server.GameRoom;
 import utility.observer.subject.RemoteSubject;
@@ -21,7 +21,7 @@ public interface ModelServer extends RemoteSubject<String, GameRoom>
 
 	GameRoom getRoomById(String id) throws RemoteException;
 
-    boolean addChatMessage(String roomId, String username, String message)throws RemoteException ;
+	boolean addChatMessage(String roomId, String username, String message)throws RemoteException ;
 
-    ArrayList<String> getAllChats(String roomId)throws RemoteException ;
+	ArrayList<String> getAllChats(String roomId)throws RemoteException ;
 }
