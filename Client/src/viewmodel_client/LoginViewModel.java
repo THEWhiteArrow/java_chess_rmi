@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.fxml.FXML;
 import model_client.ModelClient;
 
 import java.beans.PropertyChangeEvent;
@@ -53,13 +54,13 @@ public class LoginViewModel extends ViewModel implements PropertyChangeListener 
 		nameProperty= new SimpleStringProperty();
 	}
 
-	public boolean connect()  {
+	public boolean connect() {
 		String host = hostProperty.get();
 		int port = portProperty.get();
 		String name = nameProperty.get();
 
 
-		if(model.connectToServer(host,port) ){
+		if( model.connectToServer(host,port) ){
 			this.viewState.setName(name);
 			return true;
 		}else

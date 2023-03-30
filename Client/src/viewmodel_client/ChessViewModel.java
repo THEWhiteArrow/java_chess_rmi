@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model_client.ModelClient;
 
+import javax.tools.JavaCompiler;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ public class ChessViewModel extends ViewModel implements PropertyChangeListener 
 	private StringProperty notationProperty, chatProperty;
 
 	private ViewState viewState;
+
+
 	private ModelClient model;
 
 	public ChessViewModel(ModelClient model, ViewState viewState) {
@@ -26,7 +29,7 @@ public class ChessViewModel extends ViewModel implements PropertyChangeListener 
 		this.viewState=viewState;
 		this.notationProperty = new SimpleStringProperty();
 		this.chatProperty = new SimpleStringProperty();
-
+		this.model.addListener(this);
 
 		chatList = FXCollections.observableArrayList();
 	}
@@ -36,7 +39,8 @@ public class ChessViewModel extends ViewModel implements PropertyChangeListener 
 	}
 
 
-public synchronized boolean setSpectator()  {
+public synchronized boolean setSpectator()
+{
 	return model.setSpectator();
 }
 	public synchronized void clear() {
@@ -48,10 +52,8 @@ public synchronized boolean setSpectator()  {
 	private synchronized  void loadChat(){
 		Platform.runLater( () -> {
 			chatList.clear();
-
-				for(String chat : getChat())
-					chatList.add(chat);
-
+			for(String chat : getChat())
+				chatList.add(chat);
 		});
 	}
 	public String getRoomId()
@@ -59,8 +61,7 @@ public synchronized boolean setSpectator()  {
 		return viewState.getRoomId();
 	}
 
-	public void sendNotation(String notation)
-	{
+	public void sendNotation(String notation) {
 
 		if( isWhite ) model.sendNotation(viewState.getRoomId(), notation);
 		else {
@@ -70,7 +71,7 @@ public synchronized boolean setSpectator()  {
 
 	}
 
-	public void sendChatMessage()  {
+	public void sendChatMessage(){
 		
 		model.sendChatMessage(viewState.getRoomId(),viewState.getName(),chatProperty.get());
 		chatProperty.set("");;
@@ -91,7 +92,8 @@ public synchronized boolean setSpectator()  {
 		notationProperty.set(String.valueOf(builder.reverse()));
 	}
 
-	public synchronized ArrayList<String> getChat()  {
+	public synchronized ArrayList<String> getChat()
+	{
 		return model.getAllChat(viewState.getRoomId());
 	}
 
@@ -99,18 +101,18 @@ public synchronized boolean setSpectator()  {
 		String type = evt.getPropertyName();
 
 		switch(type){
-			case "ERROR":
+			case "error":
 //				no error property yet
 				break;
-			case "NOTATION":
-				String notation = (String)evt.getNewValue();
+			case "notation":
+				String notation = evt.getNewValue().toString();
 				if( isWhite) notationProperty.set(notation);
 				else {
 					StringBuilder builder = new StringBuilder(notation.split(" ")[0]);
 					notationProperty.set(String.valueOf(builder.reverse()));
 				}
 				break;
-			case "CHAT":
+			case "chat":
 				Platform.runLater( ()->{
 					chatList.add(0,(String)evt.getNewValue());
 				});

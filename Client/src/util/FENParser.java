@@ -120,8 +120,8 @@ public class FENParser {
     }
 
     public static String calculateSrc(char c){
-        if( (int)(c)>=97 ) return "out/production/game/images/black/"+(char)((int)(c)-32)+".png";
-        else return "out/production/game/images/white/"+c+".png";
+        if( (int)(c)>=97 ) return "out/production/client/images/black/"+(char)((int)(c)-32)+".png";
+        else return "out/production/client/images/white/"+c+".png";
 
     }
 

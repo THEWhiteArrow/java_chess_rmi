@@ -2,6 +2,7 @@ package view_client;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import util.DraggableMaker;
 import util.FENParser;
+import util.Logger;
 import util.Piece;
 import viewmodel_client.ChessViewModel;
 import viewmodel_client.ViewModel;
@@ -33,7 +35,7 @@ public class ChessViewController extends ViewController {
 
 
 
-	public void init(ViewHandler viewHandler, ViewModel viewModel, Region root)  {
+	public void init(ViewHandler viewHandler, ViewModel viewModel, Region root){
 		this.viewHandler=viewHandler;
 		this.viewModel= (ChessViewModel) viewModel;
 		this.root=root;
@@ -74,7 +76,7 @@ public class ChessViewController extends ViewController {
 	}
 
 
-	@FXML private void enterPressed()  {
+	@FXML private void enterPressed(){
 		viewModel.sendChatMessage();
 	}
 
@@ -83,12 +85,15 @@ public class ChessViewController extends ViewController {
 		viewModel.clear();
 	}
 
-	public void sendNotation(String fieldName)  {
+	public void sendNotation(String fieldName){
 		String notation = FENParser.calculateFen( piecesPane.getChildren() ) +" " +fieldName;
 		viewModel.sendNotation(notation);
 	}
 
-	public void updatePieces(String notation)  {
+	public void updatePieces(String notation){
+//		for(Node i : piecesPane.getChildren())
+//			System.out.println( ((ImageView)i).getImage().getUrl() );
+
 		piecesPane.getChildren().remove(0,piecesPane.getChildren().size());
 
 		ArrayList<Piece> pieces = FENParser.createPieces(notation);

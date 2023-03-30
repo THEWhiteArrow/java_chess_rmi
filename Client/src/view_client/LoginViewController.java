@@ -1,13 +1,15 @@
 package view_client;
 
-import javafx.beans.binding.Bindings;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.beans.binding.Bindings;
 import util.IntStringConverter;
 import viewmodel_client.LoginViewModel;
 import viewmodel_client.ViewModel;
+
 
 public class LoginViewController extends ViewController {
 
@@ -36,14 +38,14 @@ public class LoginViewController extends ViewController {
 		errorLabel.textProperty().bind(this.viewModel.getErrorProperty());
 		nameField.textProperty().bindBidirectional(this.viewModel.getNameProperty());
 	}
-	@FXML private void connect()  {
+	@FXML private void connect() {
 
 		if(viewModel.connect())
 			viewHandler.openView("menu");
 	}
 
 	/**
-	 * @see view-client.ViewController#reset()
+	 * @see view_client.ViewController#reset()
 	 *  
 	 */
 	public void reset() {

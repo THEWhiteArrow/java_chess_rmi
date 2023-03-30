@@ -1,25 +1,22 @@
 package model_server;
 
-
-
 import java.util.ArrayList;
+
 
 public class GameRoom {
 	private String id;
 
 	private Chess chess;
-	private ArrayList<String> chatLogs;
-//	private ArrayList<Client> spectators;
+	private ArrayList<String> chats;
 
 	public GameRoom(String id){
-		this.id=id;
-		this.chess=new Chess();
-		this.chatLogs = new ArrayList<>();
-		chatLogs.add("SYSTEM: Welcome all players!");
-	//	spectators = new ArrayList<>();
+		this.id = id;
+		this.chess = new Chess();
+		this.chats = new ArrayList<>();
+		chats.add(0,"Welcome my friends , in bulgaria its like this");
 	}
 
-	public synchronized Chess getChessGame(){
+	public Chess getChessGame(){
 		return chess;
 	}
 
@@ -27,21 +24,12 @@ public class GameRoom {
 		return id;
 	}
 
-
-
 	public void addChatMessage(String username, String message){
-		chatLogs.add(0,username+" : "+ message);
-
-	}
-	//public void addSpectator(Client spectator)
-	{
-		//spectators.add(spectator);
+		chats.add(0, username+ " : "+message);
 	}
 
-
-	public  ArrayList<String> getChatLogs(){
-		return chatLogs;
+	public ArrayList<String> getAllChats(){
+		return chats;
 	}
-
 
 }
